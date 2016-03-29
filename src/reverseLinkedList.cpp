@@ -19,5 +19,20 @@ struct node {
 };
 
 struct node * reverseLinkedList(struct node *head) {
+	if (head==NULL)          //Check for null cases
 	return NULL;
+
+	struct node *current = head;    //Assign head to a node called current
+	struct node *previous = NULL;
+	struct node *temp;
+
+	while (current != NULL)         //Continue while the linked list exists
+	{
+		temp = current->next;      //First store the next value of current node in a temp node
+		current->next = previous;  //Assign the previous node to the next of current node
+		previous = current;        //Now the current node comes to the opposite end
+		current = temp;            //Traversal continues with the next value of earlier current node
+	}
+	head = previous;               //At last make the previous node as head
+	return head;
 }
